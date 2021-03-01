@@ -1,0 +1,25 @@
+{
+  "name": "find-your-flat",
+  "version": "1.0.0",
+  "description": "A short project to get all the flat to rent easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpookyUmi/find-your-flat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpookyUmi/find-your-flat/issues"
+  },
+  "homepage": "https://github.com/SpookyUmi/find-your-flat#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
