@@ -6,10 +6,6 @@ const app = express();
 
 console.log('salut');
 
-// axios.post('https://hooks.slack.com/services/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', {
-//   "text": "Hello"
-// });
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
