@@ -11,12 +11,19 @@ const controller = {
   slackHookSubmit(request, response, next) {
     console.log('Body :', request.body);
 
-    const hello = request.body;
+    const flatToRent = request.body.adverts.map((flat) => (
+      {
+        "type": "section",
+        "text": "hello"
+      }
+    ));
 
     axios.post(SLACK_URL,
-      hello
+      {
+        "blocks": flatToRent
+      }
     )
-    response.send(hello);
+    response.send("everythink Ok");
   }
 }
 

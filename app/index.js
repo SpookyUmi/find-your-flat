@@ -11,6 +11,8 @@ app.use(express.json());
 
 app.use(router);
 
+app.use(express.static(__dirname + '/static', { dotfiles: 'allow' }));
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`server running, listening on port ${PORT}`);
