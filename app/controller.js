@@ -21,7 +21,7 @@ const controller = {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `*<${flat.url}|${flat.title}>*\n${flat.agency_name}\n${flat.price} e/mois\n${flat.area} mètres carrés\n${flat.bedrooms} chambres\nneuf ? ${flat.is_new}`
+              "text": `*<${flat.url}|${flat.title}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\nNeuf : ${flat.is_new}\nPublié à : ${flat.published_at.replace(/T/g, ' ')}\nDescription : ${flat.description}`
             }
           },
         ]
