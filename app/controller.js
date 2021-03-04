@@ -12,32 +12,40 @@ const controller = {
     console.log('yolo');
 
     if (request.body.adverts) {
-      const flatToRent = request.body.adverts.map((flat) => (
+      request.body.adverts.forEach(flat => {
+        const flatToRent = [
+          {
+            "type": "divider"
+          },
           {
             "type": "section",
             "text": {
               "type": "mrkdwn",
               "text": `*<${flat.url}|${flat.title}>*\n${flat.agency_name}\n${flat.price} e/mois\n${flat.area} mètres carrés\n${flat.bedrooms} chambres\nneuf ? ${flat.is_new}`
-            },
-            "accessory": {
-              "type": "image",
-              "image_url": flat.images_url[0],
-              "alt_text": "flat image"
             }
+          },
+        ]
+
+        flat.images_url.forEach(url => {
+          const images = {
+            "type": "image",
+            "image_url": url,
+            "alt_text": "flat image"
           }
-      ));
+          flatToRent.push(images);
+        })
 
-      console.log(flatToRent);
+        axios.post(SLACK_URL,
+          {
+              "text": "New flats incoming !",
+              "blocks": flatToRent
+          },
+          {
+            headers: { "Content-type": "application/json" }
+          }
+        )
+      });
 
-      axios.post(SLACK_URL,
-        {
-            "text": "New flats",
-            "blocks": flatToRent
-        },
-        {
-          headers: { "Content-type": "application/json" }
-        }
-      )
 
       return response.send("It's an advert, cheers !");
 
