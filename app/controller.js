@@ -11,6 +11,8 @@ const controller = {
   slackHookSubmit(request, response, next) {
     console.log('yolo');
 
+    console.log("REQUÊTE :", request.body);
+
     if (request.body.adverts) {
       request.body.adverts.forEach(flat => {
         let published = "";
