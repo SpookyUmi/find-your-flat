@@ -65,7 +65,7 @@ const controller = {
           }
           )
         });
-        return response.send("It's an advert, cheers !");
+        return response.send("It's an advert, cheers !", request.body);
 
       } return response.send("Not an advert, but it's ok");
     }
