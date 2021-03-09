@@ -57,7 +57,7 @@ const controller = {
         })
         axios.post(flat.ads_type === "buy" ? SLACK_URL_MOM : SLACK_URL,
         {
-          "text": "Nouveaux logements à vendre !",
+          "text": "New flats !",
           "blocks": flatToCheck
         },
         {
