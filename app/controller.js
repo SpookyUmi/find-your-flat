@@ -29,7 +29,7 @@ const controller = {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `*<${flat.url}|${flat.title}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
+              "text": `*<${flat.url}|${flat.title.trim()}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
             }
           },
         ];
