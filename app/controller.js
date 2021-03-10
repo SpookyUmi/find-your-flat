@@ -20,6 +20,10 @@ const controller = {
         if (flat.published_at) {
           published = flat.published_at.replace(/T/g, ' ');
         }
+        let title = "";
+        if (flat.title.includes(`\t\t\t\t\t`)) {
+          title = flat.title.replace(/\t\t\t\t\t/g, ' ').replace(/\r\n/g, ' ');
+        }
         //Creating our "blocks" array
         let flatToCheck = [
           {
@@ -29,7 +33,7 @@ const controller = {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `*<${flat.url}|${flat.title.trim()}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
+              "text": `*<${flat.url}|${title.trim()}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
             }
           },
         ];
