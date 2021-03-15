@@ -6,10 +6,10 @@ const SLACK_URL_MOM = process.env.SLACK_URL_MOM;
 
 const controller = {
   index(_, response) {
-    response.send('yolo');
+    response.send("Bienvenue sur l'API Umiflatty !");
   },
 
-  slackHookSubmit: async (request, response, next) => {
+  slackHookSubmit: async (request, response) => {
     console.log("REQUÊTE :", request.body.adverts, "---------");
     try {
       if (request.body.adverts) {
@@ -19,10 +19,12 @@ const controller = {
             published = flat.published_at.replace(/T/g, ' ');
           }
           let title = "";
-          if (flat.title.includes(`\t\t\t\t\t`)) {
-            title = flat.title.replace(/\t\t\t\t\t/g, ' ').replace(/\r\n/g, ' ');
+          if (flat.url.includes('paruvendu')) {
+            title = flat.title.replace(/\r\n/g, ' ').replace(/\t\t\t\t\t/g, ' ');
+          } else {
+            title = flat.title;
           }
-          //Creating our "blocks" array
+          //Creating our Slack "blocks" array
           let flatToCheck = [
             {
               "type": "divider"
@@ -31,7 +33,7 @@ const controller = {
               "type": "section",
               "text": {
                 "type": "mrkdwn",
-                "text": `*<${flat.url}|${title.trim()}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} e/mois\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
+                "text": `*<${flat.url}|${title.trim()}>* ~ ${flat.agency_name}\n${flat.area} mètres carrés, ${flat.bedrooms} chambres, ${flat.price} euros\n*Neuf* : ${flat.is_new}\n*Publié à* : ${published}\n*Description* : ${flat.description}`
               }
             },
           ];
@@ -79,8 +81,7 @@ const controller = {
 
     } catch (error) {
       console.log(error);
-      request.body.adverts.forEach((flat) => {
-        axios.post(flat.ads_type === "buy" ? SLACK_URL_MOM : SLACK_URL,
+        axios.post(SLACK_URL,
           {
             "text": "Une erreur est survenue",
             "blocks": [
@@ -104,7 +105,6 @@ const controller = {
           .catch(error => {
             console.log(error);
           })
-      })
     }
 
   }
